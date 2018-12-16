@@ -1,5 +1,5 @@
 <template>
-	<div id="calc-wrapper">
+	<div id="calc-wrapper" @mouseup="mouseUp">
 		<h1 id="display">{{ displayValue }}</h1>
 		<div id="buttons-wrapper">
 			<CalcBtn :value="1"></CalcBtn>
@@ -18,6 +18,8 @@
 
 <script>
 import CalcBtn from './CalcBtn.vue'
+import { EventBus } from '../main'
+
 export default {
 	name: 'Calculator',
 	components: {
@@ -26,6 +28,11 @@ export default {
 	data() {
 		return {
 			displayValue:0
+		}
+	},
+	methods: {
+		mouseUp() {
+			EventBus.$emit('mouse-up', false);
 		}
 	}
 }

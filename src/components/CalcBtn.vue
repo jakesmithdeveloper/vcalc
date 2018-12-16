@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import { EventBus } from '../main'
+
 export default {
   name: 'CalcBtn',
   props: {
@@ -17,6 +19,11 @@ export default {
     return {
       isClicked: false
     }
+  },
+  created() {
+    EventBus.$on('mouse-up', () => {
+      this.isClicked = false;
+    });
   }
 }
 </script>
