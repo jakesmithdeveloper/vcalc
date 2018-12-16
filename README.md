@@ -1,5 +1,10 @@
 # vcalc
 
+A simple calculator project for practice with Vuejs and CSS grid
+
+Setup
+---
+
 ## Project setup
 ```
 yarn install
