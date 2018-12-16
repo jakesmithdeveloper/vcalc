@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @mousedown="isClicked=true" @mouseup="isClicked=false" :class="{buttonDown:isClicked}">
     <span>{{ value }}</span>
   </div>
 </template>
@@ -12,10 +12,33 @@ export default {
 		  type: Number,
 		  required: true
 	  }
+  },
+  data() {
+    return {
+      isClicked: false
+    }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  div{
+    background-color: #42b883;
+    color: white;
+    height: 64px;
+    line-height: 64px;
+    margin: 10px;
+  }
+
+  div span {
+    user-select: none;
+  }
+
+  .buttonDown {
+    background-color: black;
+    color: white;
+    height: 64px;
+    line-height: 64px;
+    margin: 10px;
+  }
 </style>
