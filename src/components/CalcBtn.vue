@@ -1,5 +1,5 @@
 <template>
-  <div @mousedown="isClicked=true" @mouseup="isClicked=false" :class="{buttonDown:isClicked}">
+  <div @mousedown="buttonPressed" @mouseup="isClicked=false" :class="{buttonDown:isClicked,opBtn: isOp}">
     <span>{{ value }}</span>
   </div>
 </template>
@@ -11,13 +11,23 @@ export default {
   name: 'CalcBtn',
   props: {
 	  value: {
-		  type: Number,
+		  type: String,
 		  required: true
-	  }
+    },
+    isOp: {
+      type: Boolean,
+      required: true
+    }
   },
   data() {
     return {
       isClicked: false
+    }
+  },
+  methods: {
+    buttonPressed() {
+      this.isClicked = true;
+      EventBus.$emit('button-pressed', this);
     }
   },
   created() {
@@ -39,6 +49,14 @@ export default {
 
   div span {
     user-select: none;
+  }
+
+  .opBtn {
+    background-color: #ff695e;
+    color: white;
+    height: 64px;
+    line-height: 64px;
+    margin: 10px;
   }
 
   .buttonDown {
