@@ -61,7 +61,9 @@ export default {
 		},
 		handleOp(op) {
 			if (op == 'C') {
-				this.display = '0'
+				this.display = '0';
+				this.opDataReset();
+				this.appendingMode = false;
 			} else if (op == '+' || op == '-' || op == '/' || op == '*') {
 				if(this.operationData.op == null) {
 					// This number should be the first operand
