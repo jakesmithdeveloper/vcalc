@@ -63,10 +63,15 @@ export default {
 			if (op == 'C') {
 				this.display = '0'
 			} else if (op == '+' || op == '-' || op == '/' || op == '*') {
-				if(this.operationData.leftOperand == 0) {
+				if(this.operationData.op == null) {
 					// This number should be the first operand
 					this.operationData.leftOperand = this.displayValue;
 					this.operationData.op = op;
+				} else {
+					// perform operation and set up for next operation
+					const tempOp = op;
+					this.handleOp('Enter');
+					this.handleOp(tempOp);
 				}
 			} else if (op == 'Enter') {
 				const operation = this.operationData.op;
@@ -93,9 +98,8 @@ export default {
 						default:
 							break;
 					}
-
+					// reset the operation data for the next operation
 					this.opDataReset();
-
 				}
 			}
 		},
